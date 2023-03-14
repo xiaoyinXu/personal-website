@@ -3,7 +3,7 @@ COPY ./frontend/vue-project/ /app
 WORKDIR /app
 RUN npm run build
 
-FROM node:19.7-alpine
+FROM nginx:1.23.3
 COPY --from=0 /app/dist /dist
 
 ENTRYPOINT ["/docker-entrypoint.sh"]

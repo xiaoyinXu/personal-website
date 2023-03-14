@@ -9,4 +9,4 @@ RUN mvn package
 
 WORKDIR /project
 
-ENTRYPOINT ["java", "-jar", "personal-website-web/target/backend-1.0-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "personal-website-web/target/personal-website-web-1.0-SNAPSHOT.jar"]
