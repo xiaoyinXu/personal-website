@@ -1,0 +1,69 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+concurrency:
+  group: staging_environment
+  cancel-in-progress: true
+jobs:
+#  Explore-GitHub-Actions:
+#    runs-on: ubuntu-latest
+#    environment: test-environment
+#    steps:
+#      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+#      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+#      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+#      - name: Check out repository code
+#        uses: actions/checkout@v3
+#      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+#      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
+#      - name: List files in the repository
+#        run: |
+#          ls ${{ github.workspace }}
+#      - run: echo "The password is ${{ vars.PASSWORD }}."
+#      - run: echo "🍏 This job's status is ${{ job.status }}."
+#      - run: sleep 10
+#  build:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#      - name: Setup Java
+#        uses: graalvm/setup-graalvm@v1
+#        with:
+#          version: '22.3.0'
+#          java-version: '17'
+#          components: 'native-image'
+#          github-token: ${{ secrets.GITHUB_TOKEN }}
+#      - name: Build natives
+#        run: |
+#          java --version
+#          cd backend
+#          mvn clean package -DskipTests
+#          ls -R
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ secrets.REMOTE_HOST }}
+      - name: ssh-pipelines
+        uses: cross-the-world/ssh-scp-ssh-pipelines@latest
+        env:
+          WELCOME: "ssh pipelines"
+          LASTSSH: "Doing something after copying"
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          user: ${{ secrets.REMOTE_USER }}
+          pass: ${{ secrets.REMOTE_PASS }}
+          port: ${{ secrets.REMOTE_PORT }}
+          connect_timeout: 10s
+          first_ssh: |
+            pwd
+            ls
+            whoami
+
+#      scp: |
+#        './test/*' => /home/github/test/
+#        ./test/test1* => /home/github/test/test1/
+#        ./test/test*.csv => "/home/github/test/test2/"
+#      last_ssh: |
+#        echo $LASTSSH &&
+#        (mkdir test1/test || true)
+#        || ls -la
