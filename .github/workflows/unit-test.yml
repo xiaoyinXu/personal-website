@@ -1,0 +1,14 @@
+name: unit-test-workflow
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  junit:
+    runs-on: ubuntu-latest
+    environment: test-environment
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: unit-test
+        working-directory: ./backend
+        run: |
+          mvn test
