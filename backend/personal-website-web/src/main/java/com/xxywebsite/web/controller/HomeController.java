@@ -1,9 +1,12 @@
 package com.xxywebsite.web.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.xxywebsite.web.dto.LoginDto;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * @author xuxiaoyin
@@ -11,10 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 @RequestMapping("/home")
-@CrossOrigin("https://vitejs.dev")
 public class HomeController {
     @GetMapping("/content")
     public String content() {
         return "home";
+    }
+
+    @PostMapping("/login")
+    public void login(@RequestBody LoginDto loginDto, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String originUrl = request.getHeader("Origin");
+        response.setStatus(401);
+        response.addCookie(new Cookie("user-session", loginDto.getUsername()));
+        response.setHeader("location", originUrl);
     }
 }

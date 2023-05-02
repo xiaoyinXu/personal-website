@@ -29,4 +29,5 @@ onMounted(() => {
     width: 80vw;
     margin: 0 auto;
 }
+
 </style>
