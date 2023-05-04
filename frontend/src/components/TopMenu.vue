@@ -34,6 +34,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
           mode="horizontal"
           :ellipsis="false"
           @select="handleSelect"
+          :router="true"
   >
     <h1 index="..">Cookieee's Evolving Website</h1>
     <div class="flex-grow"/>
