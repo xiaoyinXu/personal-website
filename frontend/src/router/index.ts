@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import LoginView from "@/views/LoginView.vue";
 import RandomNumberView from "@/views/RandomNumberView.vue";
 import Page404View from "@/views/Page404View.vue";
+import Sentences from "@/views/Sentences.vue";
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,6 +12,11 @@ const router = createRouter({
             path: '/',
             name: 'home',
             component: HomeView
+        },
+        {
+            path: '/sentences',
+            name: 'sentences',
+            component: Sentences
         },
         {
             path: '/login',
