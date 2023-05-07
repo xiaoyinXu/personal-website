@@ -14,7 +14,7 @@
         <Transition>
           <div class="by-who">
             <p v-if="showByWho">
-              {{sentence.by}}
+              --- {{sentence.by}}
             </p>
           </div>
         </Transition>
@@ -74,7 +74,14 @@ export default defineComponent({
                     ],
                     by: 'Jordan Peterson'
                 },
+                {
+                    lines: [
+                        'And, one of the things I’ve always found is that you’ve got to start with the customer experience and work backwards for the technology.',
+                        'You can’t start with the technology and try to figure out where you’re going to try to sell it.'
+                    ],
+                    by: 'Steve Jobs'
 
+                }
             ] as Array<sentence>,
             sentence: null as sentence | null,
             showLine: [] as Array<boolean>,
@@ -94,7 +101,7 @@ export default defineComponent({
             }
         }
     },
-    async created() {
+    async mounted() {
         this.nextSentence()
     },
     watch: {
@@ -142,6 +149,14 @@ export default defineComponent({
     display: flex;
     justify-content: center;
     margin-top: 10px;
+}
+
+@media (max-width: 700px) {
+    .box-card {
+        margin-top: 50px;
+        //width: 100vw;
+    }
+
 }
 
 </style>

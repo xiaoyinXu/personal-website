@@ -72,13 +72,11 @@ const handleSelect = (key: string, keyPath: string[]) => {
     <!--        <el-menu-item index="2-4-3">item three</el-menu-item>-->
     <!--      </el-sub-menu>-->
     <!--    </el-sub-menu>-->
-    <el-menu-item index="5">
-      <el-menu-item index="top-right">
+    <el-menu-item>
         <nav>
           <el-switch v-model="isDarkStatus" class="mt-2" @click="toggleDark()" inline-prompt :active-icon="Moon"
                      :inactive-icon="Sunny"/>
         </nav>
-      </el-menu-item>
     </el-menu-item>
   </el-menu>
 </template>
